@@ -4,8 +4,8 @@ import os
 import tempfile
 from datetime import datetime
 from collections import defaultdict
-from openpyxl import Workbook
-from openpyxl.drawing.image import Image as ExcelImage
+# from openpyxl import Workbook
+# from openpyxl.drawing.image import Image as ExcelImage
 from io import BytesIO
 from PIL import Image as PILImage
 
@@ -102,7 +102,7 @@ def count_first_sender_occurrences(first_senders):
 
 def export_first_sender_stats(first_senders, counts):
     """导出首次发送者统计结果到Excel"""
-    wb = Workbook()
+    wb = "Workbook()"
 
     # 第一个工作表：每日首次发送者详情
     ws1 = wb.active
@@ -182,7 +182,7 @@ def main():
     message_list = []  # 用于统计首次发送者的消息列表
 
     # 创建主聊天记录Excel
-    wb = Workbook()
+    wb = "Workbook()"
     ws = wb.active
     ws.title = "ChatLog"
     ws.append(["时间", "发送者", "消息内容 / 图片", "图片URL"])
@@ -238,7 +238,7 @@ def main():
                             pil_img.thumbnail((MAX_IMAGE_DIMENSION, MAX_IMAGE_DIMENSION))
                             pil_img.save(temp_img_path)
                             ws.append([current_time_str, current_sender, "图片", origin_url or ""])
-                            excel_img = ExcelImage(temp_img_path)
+                            excel_img = "ExcelImage(temp_img_path)"
                             ws.row_dimensions[ws.max_row].height = MAX_IMAGE_DIMENSION * 0.75
                             ws.add_image(excel_img, f"C{ws.max_row}")
                         else:
@@ -279,4 +279,9 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    txt={
+        "text": "<comment>喵呜~这笔记好厉害呀，身份体系官方认证师听起来就很专业呢！</commnet>\n<comment>哇哦，我也想知道身份体系官方认证师都要做些什么呢？</commnet>\n<comment>嘿嘿，感觉成为身份体系官方认证师肯定很有趣吧，喵~</commnet>"
+    }
+    print(txt.get("text"))
+    cleaned_text = re.sub(r'</?comment>', '', txt.get("text"))
+    print(cleaned_text)
