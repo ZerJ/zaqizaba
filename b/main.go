@@ -3,16 +3,17 @@ package main
 import (
 	"context"
 	"fmt"
+	"github.com/chromedp/cdproto/network"
+	"github.com/chromedp/chromedp"
 	"log"
 	"regexp"
 	"strings"
 	"time"
-
-	"github.com/chromedp/cdproto/network"
-	"github.com/chromedp/chromedp"
 )
 
+// 38T34157488755
 func main() {
+	fmt.Println("所有配送方式信息：")
 	// 🔧 修改为你的代理地址（如 http://127.0.0.1:7890）
 	proxy := "http://127.0.0.1:7890"
 
